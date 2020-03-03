@@ -19,9 +19,10 @@ typedef void (*pcbHandler)();
 int count=0;
 
 struct PCB{
- int quantum;
- int quantumProgress;
-  pcbHandler fn;
+    int state;
+    int quantum;
+    int quantumProgress;
+    pcbHandler fn;
 } ;
 int x,y=0;
 
@@ -70,17 +71,8 @@ int main(void)
 /* loop until the counter exceeds 20 */
    while (count < 20){
       CQ=current->quantum;
-      CQP=current->quantumProgress;
+      CQP=current->quantumProgress;      
       printf("count is x %d,y %d, count %d cq %d CQP %d\n", x, y,count, CQ, CQP);
-   /*   if(count % 2==0)
-      {
-	current=&a;
-      }
-      else
-      {
-	current = &b;
-      }
-																													*/
       (*current).fn();
    }
 /* reset the old interrupt handler */
